@@ -2,33 +2,30 @@ pipeline {
     agent { 
         label "agentfarm"
     }
-    environment {
-        VENV = '.venv'  // Path to the virtual environment directory
-    }
     stages {
-        stage('Setup') {
+        stage('Build') {
             steps {
-                script {
-		    sh 'chmod +x build.sh'
-                    sh './build.sh'
-                    // Create virtual environment if it doesn't exist
-                    sh "python3 -m venv ${env.VENV}"
-                }
+                sh 'chmod +x build.sh'
+                sh './build.sh'
             }
         }
-        stage('Install dependencies') {
+        stage('Test') {
             steps {
-                // Activate virtual environment and install dependencies
-                script {
-                    sh "source ${env.VENV}/bin/activate && pip install -r requirements.txt"
-                }
+                sh 'chmod +x start.sh'
+                sh './start.sh'
             }
         }
-        stage('Run Application') {
+        stage('Deploy') {
             steps {
-                // Activate virtual environment and run Python application
                 script {
-                    sh "source ${env.VENV}/bin/activate && python3 main.py"
+                    // Activate virtual environment if it exists
+                    sh '''
+                    if [ -d .venv ]; then
+                        . .venv/bin/activate
+                    fi
+                    '''
+                    // Run Python application
+                    sh 'nohup python3 main.py > ~/flasklogs.log 2>&1 &'
                 }
             }
         }
