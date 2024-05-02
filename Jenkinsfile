@@ -10,9 +10,9 @@ pipeline{
            }
         }
 	stage('test'){
+	steps{
 	sh 'chmod +x start.sh'
         sh './start.sh'
-	steps{
 	}
 	}
     }
