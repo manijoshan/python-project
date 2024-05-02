@@ -2,11 +2,23 @@ pipeline {
     agent { 
         label "agentfarm"
     }
+environment {
+        VENV = '.venv'  // Path to the virtual environment directory
+    }
     stages {
         stage('Build') {
             steps {
                 sh 'chmod +x build.sh'
                 sh './build.sh'
+            }
+        }
+	
+	stage('Setup') {
+            steps {
+                script {
+                    // Create virtual environment if it doesn't exist
+                    sh "python3 -m venv ${env.VENV}"
+                }
             }
         }
         stage('Test') {
@@ -25,7 +37,8 @@ pipeline {
                     fi
                     '''
                     // Run Python application
-                    sh 'nohup python3 main.py > ~/flasklogs.log 2>&1 &'
+                  //  sh 'nohup python3 main.py > ~/flasklogs.log 2>&1 &'
+		     sh ". .venv/bin/activate && nohup python3 main.py > ~/flasklogs.log 2>&1 &"
                 }
             }
         }
