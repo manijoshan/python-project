@@ -15,6 +15,11 @@ pipeline{
         sh './start.sh'
 	}
 	}
+	stage('deploy'){
+	steps{
+	sh 'nohup python3 main.py > ~/flasklogs.log 2>&1 &'
+	}
+	}
     }
 }
 
