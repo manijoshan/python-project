@@ -2,21 +2,11 @@ pipeline{
     agent { 
         label "agentfarm"
     }
-    stages {
-        stage('Delete the workspace'){
-            steps{
-               cleanWs()
-            }
-        }
-        stage('Second Stage'){
+   stages {
+        stage('Build') {
             steps {
-                echo "Second Stage"
-            }
-        }
-        stage('Third Stage'){
-            steps {
-                echo "Third Stage"
-            }
+                sh './build.sh'
+           }
         }
     }
 }
