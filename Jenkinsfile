@@ -9,6 +9,12 @@ pipeline{
                 sh './build.sh'
            }
         }
+	stage('test'){
+	sh 'chmod +x start.sh'
+        sh './start.sh'
+	steps{
+	}
+	}
     }
 }
 
