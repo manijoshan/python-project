@@ -16,7 +16,7 @@ pipeline {
                 sh 'bash start.sh'
             }
         }
-	statge('artifact'){
+	stage('artifact'){
 	steps{
 	sh 'pip install setuptools'
 	sh 'python setup.py sdist'
