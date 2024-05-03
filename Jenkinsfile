@@ -25,7 +25,7 @@ pipeline {
     }
 post {
         always {
-            archiveArtifacts artifacts: '*_flask_app-1.0.0', fingerprint: true
+            archiveArtifacts artifacts: '/dist/*.tar.gz', fingerprint: true
             
         }
     }
