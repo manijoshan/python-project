@@ -25,8 +25,8 @@ pipeline {
     }
 post {
         always {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
+            archiveArtifacts artifacts: '*_flask_app-1.0.0', fingerprint: true
+            
         }
     }
 }
