@@ -16,5 +16,11 @@ pipeline {
                 sh 'bash start.sh'
             }
         }
+	statge('artifact'){
+	steps{
+	sh 'pip install setuptools'
+	sh 'python setup.py sdist'
+	}
+      }
 }
 }
