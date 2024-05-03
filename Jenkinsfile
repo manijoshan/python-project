@@ -19,7 +19,7 @@ pipeline {
 	stage('artifact'){
 	steps{
 	sh'chmod +x artifact.sh'
-	sh 'artifact.sh'
+	sh 'bash artifact.sh'
 	}
       }
 }
