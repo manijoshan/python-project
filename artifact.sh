@@ -1,5 +1,5 @@
 #! /bin/bash
-. ./venv/bin/activate
+#. ./venv/bin/activate
           
 pip install setuptools
 python setup.py sdist 
