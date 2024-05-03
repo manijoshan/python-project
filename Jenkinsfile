@@ -18,8 +18,8 @@ pipeline {
         }
 	stage('artifact'){
 	steps{
-	sh 'pip install setuptools'
-	sh 'python setup.py sdist'
+	sh'chmod +x artifact.sh'
+	sh 'artifact.sh'
 	}
       }
 }
