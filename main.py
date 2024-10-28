@@ -1,6 +1,6 @@
 from flask import Flask
-ADMIN_USER = "testUser"
-ADMIN_PASSWORD = "testPassword123!"
+API_KEY = "API_KEY_12345"
+PASSWORD = "PASSWORD_123!"
 app = Flask(__name__)
 
 class HelloWorld():
