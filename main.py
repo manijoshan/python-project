@@ -1,6 +1,6 @@
 from flask import Flask
-API_KEY = "API_KEY_12345"
-PASSWORD = "PASSWORD_123!"
+AWS_ACCESS_KEY_ID="MANI"
+AWS_SECRET_ACCESS_KEY="MANI"
 app = Flask(__name__)
 
 class HelloWorld():
