@@ -3,7 +3,7 @@ pipeline {
         label "agentfarm"
     }
     environment {
-        Admin_user = credentials('ravi')        
+        ADMIN_USER = credentials('ravi')        
         ADMIN_PASSWORD = credentials('ravi@123') 
     }
     stages {
