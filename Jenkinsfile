@@ -31,4 +31,5 @@ pipeline {
             archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
         }
     }
+    
 }
