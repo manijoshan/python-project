@@ -2,6 +2,10 @@ pipeline {
     agent { 
         label "agentfarm"
     }
+    environment {
+        Admin_user = credentials('ravi')        
+        ADMIN_PASSWORD = credentials('ravi@123') 
+    }
     stages {
         stage('Build') {
             steps {
@@ -9,24 +13,22 @@ pipeline {
                 sh 'bash build.sh'
             }
         }
-	
         stage('Test') {
             steps {
                 sh 'chmod +x start.sh'
                 sh 'bash start.sh'
             }
         }
-	stage('artifact'){
-	steps{
-	sh'chmod +x artifact.sh'
-	sh 'bash artifact.sh'
-	}
-      }
+        stage('Artifact') {
+            steps {
+                sh 'chmod +x artifact.sh'
+                sh 'bash artifact.sh'
+            }
+        }
     }
-post {
+    post {
         always {
             archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
-            
         }
     }
 }
